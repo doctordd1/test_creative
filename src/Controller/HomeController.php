@@ -31,7 +31,7 @@ class HomeController
         }
         $data = $this->twig->render('home/index.html.twig', [
             'trailers' => $trailers,
-            'nameClass' => get_class($this),
+            'nameClass' => __CLASS__,
             'nameMethod' => __FUNCTION__,
             'currentDate' => date('d.m.Y'),
         ]);
