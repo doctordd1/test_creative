@@ -1,7 +1,17 @@
 version: '3.7'
 
 services:
-  app:
+  nginx:
+      build:
+        dockerfile: docker/ngnix.Dockerfile
+      volumes:
+        - .:/var/www/app
+        - ./conf.d/:/etc/nginx/conf.d/
+      ports:
+          - "80:80"
+      links:
+          - app
+  fpm:
     build:
       dockerfile: docker/php-dev.Dockerfile
       context: .
@@ -13,6 +23,7 @@ services:
       APP_ENV: 'dev'
     ports:
       - 8080:8080
+      - :9000
 
   database:
     image: mysql:5.7

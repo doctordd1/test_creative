@@ -22,11 +22,16 @@ class HomeController
 
     public function index(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
+    
         try {
             $data = $this->twig->render('home/index.html.twig', [
                 'trailers' => $this->fetchData(),
+                'nameClass' => get_class($this),
+                'nameMethod' => __FUNCTION__,
+                'currentDate' => date('d.m.Y'),
             ]);
         } catch (\Exception $e) {
+    
             throw new HttpBadRequestException($request, $e->getMessage(), $e);
         }
 
