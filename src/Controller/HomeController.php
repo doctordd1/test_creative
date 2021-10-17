@@ -22,7 +22,7 @@ class HomeController
 
     public function index(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $trailers = []
+        $trailers = [];
         try {
             $trailers = $this->fetchData();
         } catch (\Exception $e) {
